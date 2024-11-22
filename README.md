@@ -27,8 +27,6 @@
     
     bash
     
-    Копировать код
-    
     `python script_name.py` 
     
 3.  После выполнения скрипта текст и стили будут автоматически добавлены в панель MSTSC.
@@ -64,8 +62,6 @@ This script enables customization of the MSTSC toolbar by adding text or styles 
 2.  Run the script:
     
     bash
-    
-    Копировать код
     
     `python script_name.py` 
     
