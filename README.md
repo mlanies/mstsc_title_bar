@@ -27,7 +27,7 @@
     
     bash
     
-    `python script_name.py` 
+`python script_name.py` 
     
 3.  После выполнения скрипта текст и стили будут автоматически добавлены в панель MSTSC.
 
