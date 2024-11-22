@@ -1,39 +1,72 @@
-# Window Manipulation Script
 
-## Описание
-Этот проект представляет собой Python-скрипт, предназначенный для изменения атрибутов окон в операционной системе Windows с использованием WinAPI. Скрипт был создан для манипуляции окнами, такими как окна удаленного рабочего стола (RDP), чтобы изменить заголовок, стиль, видимость и другие параметры окна.
+# Добавление информации в панель MSTSC
 
-### Возможности
-- Поиск окна по классу.
-- Изменение текста заголовка окна.
-- Добавление стиля `WS_CAPTION` для отображения заголовка.
-- Манипуляции с видимостью окна через стили.
-- Основы для работы с прозрачностью окон (функциональность отключена).
+Этот скрипт предназначен для изменения окна `ToolbarWindow32`, которое является частью панели управления Microsoft Remote Desktop (MSTSC). Наше решение позволяет добавлять пользовательскую информацию, такую как текст заголовка, в панель MSTSC, что может быть полезно для кастомизации или отображения дополнительной информации.
 
-### Использование
-1. Убедитесь, что у вас установлен Python 3.x.
-2. Запустите скрипт, указав название класса окна, которое вы хотите изменить.
-3. Скрипт автоматически найдет окно и применит изменения.
+## Возможности
 
-### Применение
-Этот скрипт был разработан для специфической задачи изменения интерфейса окна в контексте работы с RDP. Например, для добавления пользовательского заголовка окна и изменения его внешнего вида.
+1.  **Поиск окон**:
+    
+    -   Находит родительское окно с классом `BBarWindowClass`.
+    -   Находит дочернее окно с классом `ToolbarWindow32`, находящееся в панели MSTSC.
+2.  **Изменение стилей**:
+    
+    -   Добавляет стили `WS_CAPTION` (заголовок окна) и `WS_MINIMIZE` (кнопка свертывания), чтобы сделать окно более функциональным и визуально заметным.
+3.  **Добавление пользовательской информации**:
+    
+    -   Устанавливает текст заголовка дочернего окна на `2GC` (или любой другой текст по желанию).
 
----
+## Зачем это нужно?
 
-## Description
-This project is a Python script designed to modify window attributes on Windows operating systems using the WinAPI. The script is tailored for manipulating windows, such as Remote Desktop (RDP) windows, to change the title, style, visibility, and other properties.
+Этот скрипт позволяет кастомизировать панель управления MSTSC, добавляя в неё текст или стили, необходимые для ваших задач. Это может быть полезно для визуализации дополнительной информации, такой как статус подключения, пользовательские метки или другие данные, связанные с удалённым рабочим столом.
 
-### Features
-- Locate a window by its class name.
-- Change the window's title text.
-- Add the `WS_CAPTION` style to display a title bar.
-- Modify window visibility through styles.
-- Foundation for window transparency functionality (currently disabled).
+## Как использовать?
 
-### Usage
-1. Ensure you have Python 3.x installed.
-2. Run the script with the class name of the window you want to modify.
-3. The script will automatically locate the window and apply the changes.
+1.  Убедитесь, что Python установлен на вашем компьютере.
+2.  Запустите скрипт:
+    
+    bash
+    
+    Копировать код
+    
+    `python script_name.py` 
+    
+3.  После выполнения скрипта текст и стили будут автоматически добавлены в панель MSTSC.
 
-### Use Case
-This script was developed for a specific task of modifying the appearance of a window in the context of RDP. For instance, adding a custom window title and altering its visual style.
+----------
+
+#### English
+
+# Adding Information to MSTSC Toolbar
+
+This script is designed to modify the `ToolbarWindow32` window, which is part of the Microsoft Remote Desktop (MSTSC) toolbar. Our solution allows adding custom information, such as title text, to the MSTSC toolbar, which can be useful for customization or displaying additional details.
+
+## Features
+
+1.  **Window Search**:
+    
+    -   Locates the parent window with the class `BBarWindowClass`.
+    -   Finds the child window with the class `ToolbarWindow32` within the MSTSC toolbar.
+2.  **Style Modification**:
+    
+    -   Adds `WS_CAPTION` (window title) and `WS_MINIMIZE` (minimize button) styles to make the window more functional and visually noticeable.
+3.  **Adding Custom Information**:
+    
+    -   Sets the title text of the child window to `2GC` (or any custom text as needed).
+
+## Why Use This Script?
+
+This script enables customization of the MSTSC toolbar by adding text or styles required for your specific needs. It can be useful for displaying additional information, such as connection status, custom labels, or other data related to remote desktop sessions.
+
+## How to Use?
+
+1.  Ensure Python is installed on your computer.
+2.  Run the script:
+    
+    bash
+    
+    Копировать код
+    
+    `python script_name.py` 
+    
+3.  After execution, the text and styles will be automatically applied to the MSTSC toolbar.
