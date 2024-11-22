@@ -1,10 +1,10 @@
 
+# Demo
+[![title mstsc](https://pub-a89b5697d4074daeb851dc6c011ed225.r2.dev/mstsc_title.png)](https://pub-a89b5697d4074daeb851dc6c011ed225.r2.dev/mstsc_title.mp4)
+
+
 # Добавление информации в панель MSTSC
 
-<video width="320" height="240" controls>
-  <source src="https://pub-a89b5697d4074daeb851dc6c011ed225.r2.dev/mstsc_title.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
 
 Этот скрипт предназначен для изменения окна `ToolbarWindow32`, которое является частью панели управления Microsoft Remote Desktop (MSTSC). Наше решение позволяет добавлять пользовательскую информацию, такую как текст заголовка, в панель MSTSC, что может быть полезно для кастомизации или отображения дополнительной информации.
 
