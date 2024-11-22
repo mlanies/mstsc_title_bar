@@ -1,5 +1,5 @@
 
-# [![Demo title mstsc]](https://pub-a89b5697d4074daeb851dc6c011ed225.r2.dev/mstsc_title.mp4)
+# [Demo title mstsc](https://pub-a89b5697d4074daeb851dc6c011ed225.r2.dev/mstsc_title.mp4)
 
 
 
