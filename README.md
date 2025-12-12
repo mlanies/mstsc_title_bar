@@ -8,7 +8,7 @@
 
 Never act on **PROD** thinking it's **TEST** again.
 
-![Mockup](https://via.placeholder.com/600x120/0078d7/ffffff?text=MSTSC+Toolbar+Example)
+![Mockup](https://placehold.co/600x120/0078d7/ffffff?text=MSTSC+Toolbar+Example)
 
 ## 🌟 Key Features
 
