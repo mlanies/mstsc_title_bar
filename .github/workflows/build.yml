@@ -29,7 +29,7 @@ jobs:
 
     - name: Publish Single File Exe
       run: |
-        dotnet publish MstscTitleBar/MstscTitleBar.csproj -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o build_output
+        dotnet publish MstscTitleBar/MstscTitleBar.csproj -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -p:PublishTrimmed=true -p:IncludeNativeLibrariesForSelfExtract=true -o build_output
 
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v4
