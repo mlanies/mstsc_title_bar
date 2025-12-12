@@ -1,154 +1,94 @@
+# RDP Title Master
 
-# [Demo: Customizing MSTSC Toolbar Title](https://pub-a89b5697d4074daeb851dc6c011ed225.r2.dev/mstsc_title_new.mp4)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![C# .NET 8](https://img.shields.io/badge/.NET-8.0-purple.svg)](https://dotnet.microsoft.com/)
+[![Platform Windows](https://img.shields.io/badge/platform-Windows-0078d7.svg)](https://www.microsoft.com/windows)
 
+**RDP Title Master** is a powerful background utility for System Administrators who manage multiple Remote Desktop (MSTSC) connections. It automatically identifies RDP windows based on their titles (IP/Host) and overlays a custom, color-coded "Badge" on the toolbar.
 
-## Добавление пользовательской информации в панель MSTSC
+Never act on **PROD** thinking it's **TEST** again.
 
-Этот скрипт позволяет кастомизировать панель управления Microsoft Remote Desktop (MSTSC), изменяя окно `ToolbarWindow32`, которое отвечает за отображение панели инструментов. В частности, он добавляет текст и настраивает стиль окна, что делает панель более информативной и визуально заметной.
+![Mockup](https://via.placeholder.com/600x120/0078d7/ffffff?text=MSTSC+Toolbar+Example)
 
-### Основные возможности
+## 🌟 Key Features
 
-1.  **Поиск окон:**
-    
-    -   Автоматически находит родительское окно с классом `BBarWindowClass`.
-    -   Определяет дочернее окно с классом `ToolbarWindow32`, которое отвечает за панель инструментов MSTSC.
-2.  **Добавление пользовательского текста:**
-    
-    -   Позволяет установить текст, например, `2GC - test server`, или любой другой, чтобы отображать пользовательскую информацию в панели.
-3.  **Настройка стилей окна:**
-    
-    -   Добавляет стили, такие как `WS_CAPTION` (заголовок окна) и `WS_MINIMIZE` (кнопка свертывания), чтобы сделать окно более функциональным.
-4.  **Прозрачный фон и отрисовка текста:**
-    
-    -   Устанавливает прозрачный фон панели инструментов и добавляет текст с кастомными параметрами (шрифт, размер, цвет и позиция).
+*   **🕵️ Daemon Mode**: Runs in the background and constantly monitors for new RDP sessions. No need to run a script manually for every window.
+*   **🧠 Auto-Matching**: Matches window titles (Hostnames or IPs) against a customizable list of rules.
+*   **🎨 Visual Badges**: Renders modern, rounded badges with drop shadows.
+    *   🔴 **Red** for PROD
+    *   🟢 **Green** for LOCAL/DEV
+    *   🔵 **Blue** for TEST
+*   **🛠️ Hot-Reload**: Changes to `settings.json` are applied on the next refresh cycle (every 3 seconds).
 
-----------
+## 🚀 Getting Started
 
-### Для чего это нужно?
+### Prerequisites
+*   Windows 10/11 or Server 2016+
+*   [.NET Desktop Runtime 8.0](https://dotnet.microsoft.com/download/dotnet/8.0) (if running the compiled version).
 
-Этот скрипт разработан для пользователей, которые хотят улучшить панель MSTSC, добавляя текстовую информацию или изменяя стили окна. Это особенно полезно для:
+### Installation
 
--   Отображения статуса подключения.
--   Идентификации сессий удалённого рабочего стола.
--   Добавления пользовательских меток или любой другой дополнительной информации.
+1.  Download the latest release (or build from source).
+2.  Edit `settings.json` to define your environment rules.
+3.  Run `MstscTitleBar.exe`.
+4.  Open Remote Desktop connections and watch the magic happen.
 
-----------
+## Project Structure
 
-### Как это работает?
+```text
+.
+├── MstscTitleBar/       # C# .NET Project (Main)
+│   ├── Program.cs       # Logic & Rendering
+│   ├── settings.json    # Configuration
+│   └── MstscTitleBar.csproj
+├── legacy_python/       # Python Version (Deprecated)
+├── README.md
+└── .gitignore
+```
 
-1.  **Python-скрипт запускается на локальном компьютере.**
-2.  **Автоматически обнаруживаются окна панели MSTSC.**
-3.  **В окно панели добавляются текст и стили, заданные пользователем.**
+### Configuration (`settings.json`)
 
-----------
+Map keywords found in the RDP window title to specific labels and colors.
 
-### Инструкция по установке и запуску
+```json
+[
+  {
+    "Pattern": "192.168",
+    "Label": "🏠 HOME LAB",
+    "ColorHex": "#2ecc71"
+  },
+  {
+    "Pattern": "db-prod",
+    "Label": "🔥 PROD DB",
+    "ColorHex": "#e74c3c"
+  },
+  {
+    "Pattern": "aws",
+    "Label": "☁️ AWS",
+    "ColorHex": "#f39c12"
+  }
+]
+```
 
-1.  Убедитесь, что у вас установлен Python 3.8 или выше.
-    
-2.  Клонируйте репозиторий:
-    
-    bash
-    
-    Копировать код
-    
-    `git clone https://github.com/your-repo/mstsc-customization.git
-    cd mstsc-customization` 
-    
-3.  Запустите скрипт:
-    
-    bash
-    
-    Копировать код
-    
-    `python script_name.py` 
-    
-4.  Откройте MSTSC, чтобы увидеть изменения на панели.
-    
+## 🛠️ Building from Source
 
-----------
+```bash
+cd MstscTitleBar
+dotnet restore
+dotnet run
+```
 
-### Пример использования
+To build a single-file executable for easy distribution:
 
-**Пример использования скрипта:**
+```bash
+dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true
+```
 
--   Текущий текст, добавленный на панель: `2GC - test server`.
--   Отступы, шрифт и размер текста задаются внутри кода.
--   Установлен прозрачный фон панели инструментов.
+## ⚠️ Known Limitations
 
-----------
+*   **Window Resize**: If you resize the RDP window, the overlay might disappear briefly until the daemon refreshes (every 3 seconds).
+*   **Full Screen**: The toolbar in full-screen mode operates differently; this tool targets the "Windowed" mode toolbar (`BBarWindowClass`).
 
+## License
 
-## Adding Custom Information to the MSTSC Toolbar
-
-This script customizes the Microsoft Remote Desktop (MSTSC) toolbar by modifying the `ToolbarWindow32` window, which controls the toolbar display. Specifically, it adds custom text and adjusts the window's style to make the toolbar more informative and visually distinct.
-
-### Key Features
-
-1.  **Window Detection:**
-    
-    -   Automatically locates the parent window with the class `BBarWindowClass`.
-    -   Identifies the child window with the class `ToolbarWindow32`, responsible for the MSTSC toolbar.
-2.  **Adding Custom Text:**
-    
-    -   Allows you to set custom text, such as `2GC - test server`, or any other information you want to display on the toolbar.
-3.  **Window Style Customization:**
-    
-    -   Adds styles such as `WS_CAPTION` (window title) and `WS_MINIMIZE` (minimize button) to enhance functionality.
-4.  **Transparent Background and Text Rendering:**
-    
-    -   Sets a transparent background for the toolbar and renders text with custom parameters (font, size, color, and position).
-
-----------
-
-### Why Use This Script?
-
-This script is designed for users who want to enhance the MSTSC toolbar by adding custom text or modifying window styles. It is particularly useful for:
-
--   Displaying connection status.
--   Identifying remote desktop sessions.
--   Adding custom labels or any additional information.
-
-----------
-
-### How It Works
-
-1.  **Run the Python script on your local machine.**
-2.  **The script automatically detects MSTSC toolbar windows.**
-3.  **Custom text and styles are applied to the toolbar window as configured.**
-
-----------
-
-### Installation and Usage
-
-1.  Ensure Python 3.8 or later is installed on your machine.
-    
-2.  Clone the repository:
-    
-    bash
-    
-    Копировать код
-    
-    `git clone https://github.com/your-repo/mstsc-customization.git
-    cd mstsc-customization` 
-    
-3.  Run the script:
-    
-    bash
-    
-    Копировать код
-    
-    `python script_name.py` 
-    
-4.  Open MSTSC to see the changes applied to the toolbar.
-    
-
-----------
-
-### Example Usage
-
-**Example script behavior:**
-
--   Current text added to the toolbar: `2GC - test server`.
--   Margins, font, and text size are configurable within the script.
--   A transparent background is applied to the toolbar for a cleaner look.
+MIT License. Free for personal and commercial use.

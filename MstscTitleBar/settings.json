@@ -1,0 +1,22 @@
+[
+  {
+    "Pattern": "192.168",
+    "Label": "🏠 HOME",
+    "ColorHex": "#2ecc71"
+  },
+  {
+    "Pattern": "prod",
+    "Label": "⚠️ PROD",
+    "ColorHex": "#e74c3c"
+  },
+  {
+    "Pattern": "test",
+    "Label": "🧪 TEST",
+    "ColorHex": "#3498db"
+  },
+  {
+    "Pattern": "admin",
+    "Label": "🛡️ ROOT",
+    "ColorHex": "#9b59b6"
+  }
+]
